@@ -8,10 +8,14 @@ El propósito de este proyecto es proporcionar un servicio web mediante el cual 
 
 A continuación se describe cada recurso que permite llevar a cabo las tareas anteriores:
 
-Recurso: Feedmarvel
-URI/Path: http://localhost:8080/marvel/webresources/feedmarvel/now
-Verbo: GET
-Parámetro: now (String)
+Recurso: Feedmarvel.
+
+URI/Path: http://localhost:8080/marvel/webresources/feedmarvel/now.
+
+Verbo: GET.
+
+Parámetro: now (String).
+
 Descripción: El cliente realiza esta petición cada que requiere actualizar la información de la API de Marvel. Para conseguirlo se llevo a cabo el registro del servidor test.albo.mx y adicional se ocuparon las claves públicas y privadas para hacer la invocación. A fin de ahorrar tiempo, se utilizó una librería externa que permite consultar la API (com.arnaudpiroelle.marvel-api). La lógica del módulo es como sigue:
 1. Limpieza de las tablas a hacer actualizadas y estampa de tiempo de inicio de actualización.
 2. Carga inicial de los 2 personajes de los que se requiere información.
@@ -183,10 +187,14 @@ Descripción: El cliente realiza esta petición cada que requiere actualizar la 
             System.out.println("queryICoCh = " + queryICoCh);
             statement.execute(queryICoCh.substring(0,queryICoCh.length()-1));
 
-Recurso: Characters
+Recurso: Characters.
+
 URI/Path: http://localhost:8080/marvel/webresources/characters/{param}
-Verbo: GET
+
+Verbo: GET.
+
 Parámetro: ch (String). Nombre del personaje del que se buscarán los caracteres involucrados.
+
 Descripción: El cliente realiza esta petición para obtener de acuerdo a la estructura solicitada, los personajes involucrados con el personaje definido en el parámetro a través de los diferentes comics donde este último personaje participa. En una única consulta a la BD de sincronización local, se obtiene el resultado esperado con la estructura JSON deseada.
 Respuesta: JSON
 
@@ -241,20 +249,28 @@ Respuesta: JSON
         return jsonString;
 
 Ejemplos:
+
 Invocación: http://localhost:8080/marvel/webresources/characters/ironman
 Respuesta: ironmanCharacteres.json
+
 Invocación: http://localhost:8080/marvel/webresources/characters/capamerica
 Respuesta: capamericaCharacteres.json
 
-Recurso: Colaborators
+Recurso: Colaborators.
+
 URI/Path: http://localhost:8080/marvel/webresources/colaborators/{param}
+
 Verbo: GET
+
 Parámetro: ch (String). Nombre del personaje del que se buscarán los colaboradores involucrados.
+
 Descripción: El cliente realiza esta petición para obtener de acuerdo a la estructura solicitada, los creadores del personaje definido en el parámetro a través de los diferentes comics donde este último personaje participa. Cabe mencionar, que se consideran para esta prueba aquellos con un rol de editor, escritor, colorista; los demás roles no se localizan en la BD. En una única consulta a la BD de sincronización local, se obtiene el resultado esperado con la estructura JSON deseada.
 Respuesta: JSON
 Ejemplos:
+
 Invocación: http://localhost:8080/marvel/webresources/colaborators/ironman
 Respuesta: ironmanColaborators.json
+
 Invocación: http://localhost:8080/marvel/webresources/colaborators/capamerica
 Respuesta: capamericaColaborators.json
 
