@@ -7,6 +7,10 @@
 -- Versión del servidor: 5.5.24-log
 -- Versión de PHP: 5.4.3
 
+CREATE DATABASE 'marvel_sync';
+
+USE marvel_sync;
+
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
@@ -161,3 +165,7 @@ ALTER TABLE `rel_comic_creator`
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+CREATE USER 'marvel_u'@'localhost' IDENTIFIED BY 'PupJaX9vvnRLp5xe';
+
+GRANT ALL PRIVILEGES ON marvel_sync.* TO 'marvel_u'@'localhost';
