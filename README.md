@@ -1,6 +1,6 @@
 # marvel
 
-El propósito de este proyecto es proporcionar un servicio web mediante el cual se cumplan las siguientes consideraciones:
+El propósito de este proyecto es proporcionar un servicio web en JAVA publicado bajo TOMCAT mediante el cual se cumplan las siguientes consideraciones:
 * Consumir la API que Marvel proporciona a desarrolladores.
 * Estructurar la información recibida de la API para poder entregar la información que el cliente requiere:
 	* Colaboradores de los comics de los personajes: Iron Man y Captain America
@@ -10,7 +10,7 @@ A continuación se describe cada recurso que permite llevar a cabo las tareas an
 
 Recurso: Feedmarvel.
 
-URI/Path: http://localhost:8080/marvel/webresources/feedmarvel/now.
+URI/Path: http://[servidor]:[puerto]/marvel/webresources/feedmarvel/now.
 
 Verbo: GET.
 
@@ -189,7 +189,7 @@ Descripción: El cliente realiza esta petición cada que requiere actualizar la 
 
 Recurso: Characters.
 
-URI/Path: http://localhost:8080/marvel/webresources/characters/{param}
+URI/Path: http://[servidor]:[puerto]/marvel/webresources/characters/{param}
 
 Verbo: GET.
 
@@ -250,15 +250,16 @@ Respuesta: JSON
 
 Ejemplos:
 
-Invocación: http://localhost:8080/marvel/webresources/characters/ironman
+Invocación: http://[servidor]:[puerto]/marvel/webresources/characters/ironman
 Respuesta: ironmanCharacteres.json
 
-Invocación: http://localhost:8080/marvel/webresources/characters/capamerica
+Invocación: http://[servidor]:[puerto]/marvel/webresources/characters/capamerica
 Respuesta: capamericaCharacteres.json
+
 
 Recurso: Colaborators.
 
-URI/Path: http://localhost:8080/marvel/webresources/colaborators/{param}
+URI/Path: http://[servidor]:[puerto]/marvel/webresources/colaborators/{param}
 
 Verbo: GET
 
@@ -266,13 +267,6 @@ Parámetro: ch (String). Nombre del personaje del que se buscarán los colaborad
 
 Descripción: El cliente realiza esta petición para obtener de acuerdo a la estructura solicitada, los creadores del personaje definido en el parámetro a través de los diferentes comics donde este último personaje participa. Cabe mencionar, que se consideran para esta prueba aquellos con un rol de editor, escritor, colorista; los demás roles no se localizan en la BD. En una única consulta a la BD de sincronización local, se obtiene el resultado esperado con la estructura JSON deseada.
 Respuesta: JSON
-Ejemplos:
-
-Invocación: http://localhost:8080/marvel/webresources/colaborators/ironman
-Respuesta: ironmanColaborators.json
-
-Invocación: http://localhost:8080/marvel/webresources/colaborators/capamerica
-Respuesta: capamericaColaborators.json
 
         // build connection
         Connection connection = DriverManager.getConnection(DB_URL, USER, PASS);
@@ -330,9 +324,20 @@ Respuesta: capamericaColaborators.json
         //throw new UnsupportedOperationException();
         return jsonString;
 
-En la raiz de este repositorio se localizan 2 scripts sql de base de datos.
-Se requiere cargar localmente la estructura básica (sin información de sincronización) mediante el script marvel_sync.sql.
+Ejemplos:
 
-    mysql -u root -p < marvel_sync.sql
-    
-Se coloca el segundo script a fin de ejemplo del llenado de la base de datos una vez que se invocó el API de Marvel (marvel_sync_synchronized.sql)
+Invocación: http://[servidor]:[puerto]/marvel/webresources/colaborators/ironman
+Respuesta: ironmanColaborators.json
+
+Invocación: http://[servidor]:[puerto]/marvel/webresources/colaborators/capamerica
+Respuesta: capamericaColaborators.json
+
+En la raiz de este repositorio se localizan 2 shells de LINUX para la construcción y exposición del servicio mencionado:
+
+1. assemble.sh
+Este shell carga la estructura de la base de datos de sincronización (marvel_sync.sql) y genera el usuario de acceso a ella.
+Se coloca un segundo script SQL a fin de ejemplo del llenado de la base de datos una vez que se invocó el API de Marvel (marvel_sync_synchronized.sql).
+También genera el empaquetado .WAR del proyecto mediante maven.
+
+2. avengers.sh
+Este shell espera que el aplicativo se pruebe en un servidor TOMCAT para que el empquetado WAR generado en el punto 1 anterior pueda exponer el servicio web.
