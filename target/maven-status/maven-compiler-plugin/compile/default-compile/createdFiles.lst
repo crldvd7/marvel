@@ -1,0 +1,11 @@
+com\api\bean\Telefono.class
+com\apirest\apirestjava\ColaboratorsResource.class
+com\api\bean\Persona.class
+com\api\bean\Character.class
+com\apirest\apirestjava\ApipruebaResource.class
+com\apirest\apirestjava\ApplicationConfig.class
+com\api\bean\Colaborator.class
+com\api\bean\Json.class
+com\api\bean\CharacterRel.class
+com\apirest\apirestjava\FeedmarvelResource.class
+com\apirest\apirestjava\CharactersResource.class
