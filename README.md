@@ -8,7 +8,7 @@ El propósito de este proyecto es proporcionar un servicio web en JAVA publicado
 
 A continuación se describe cada recurso que permite llevar a cabo las tareas anteriores:
 
-Recurso: Feedmarvel.
+## Recurso: Feedmarvel.
 
 URI/Path: http://[servidor]:[puerto]/marvel/webresources/feedmarvel/now.
 
@@ -187,7 +187,7 @@ Descripción: El cliente realiza esta petición cada que requiere actualizar la 
             System.out.println("queryICoCh = " + queryICoCh);
             statement.execute(queryICoCh.substring(0,queryICoCh.length()-1));
 
-Recurso: Characters.
+## Recurso: Characters.
 
 URI/Path: http://[servidor]:[puerto]/marvel/webresources/characters/{param}
 
@@ -248,7 +248,7 @@ Respuesta: JSON
         //throw new UnsupportedOperationException();
         return jsonString;
 
-Ejemplos:
+### Ejemplos:
 
 Invocación: http://[servidor]:[puerto]/marvel/webresources/characters/ironman
 Respuesta: ironmanCharacteres.json
@@ -257,7 +257,7 @@ Invocación: http://[servidor]:[puerto]/marvel/webresources/characters/capameric
 Respuesta: capamericaCharacteres.json
 
 
-Recurso: Colaborators.
+## Recurso: Colaborators.
 
 URI/Path: http://[servidor]:[puerto]/marvel/webresources/colaborators/{param}
 
@@ -324,7 +324,7 @@ Respuesta: JSON
         //throw new UnsupportedOperationException();
         return jsonString;
 
-Ejemplos:
+### Ejemplos:
 
 Invocación: http://[servidor]:[puerto]/marvel/webresources/colaborators/ironman
 Respuesta: ironmanColaborators.json
